@@ -106,7 +106,7 @@ app.put("/addFunds", async (req, res) => {
     await newTransaction.save();
     res.status(200).send({
       status: "ok",
-      message: `Successfully Updated`,
+      message: `Fund Successfully Added`,
       user: { ...user._doc, balance: user.balance / 100 },
     });
   } catch (e) {
@@ -144,7 +144,7 @@ app.put("/spendFunds", async (req, res) => {
       await newTransaction.save();
       res.status(200).send({
         status: "ok",
-        message: `Successfully Updated`,
+        message: `Fund Successfully Spend`,
         user: { ...user._doc, balance: user.balance / 100 },
       });
     } else {
