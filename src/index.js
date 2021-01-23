@@ -207,10 +207,9 @@ app.get("/wallets", async (req, res) => {
 app.get("/transactions", async (req, res) => {
   try {
     const transactions = await Transaction.find();
-    const detailedTransactions = await transactions.map(async (transaction) => {
-      console.log(1);
-      const user = await User.findOne({ user_id: transaction.user_id });
-      console.log(2);
+    const users = await User.find();
+    const detailedTransactions = transactions.map((transaction) => {
+      const user = users.filter((u) => u.user_id === transaction.user_id)[0];
       return {
         user_id: user.user_id,
         user_name: user.user_name,
